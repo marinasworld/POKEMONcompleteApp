@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Pokemon
+{% endblock %}
+
+{% block content %}
+    {% include './includes/nav.html' %}
+    <form style="margin-left:20px" method="POST">
+        <div class="mb-3">
+            <label for="pokemonLabel" class="form-label">Search for Pokemon</label>
+            <input type="text" class="form-control" style="max-width: 300px;" id="pokemonNameInput" name="pokemonNameInput">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+        <a class="btn btn-primary" href="{{ url_for('main.capturePokemon', pokemonName='pikachu') }}">Capture your Pokemon</a>
+    </form>
+
+    {% if drivers %}
+        <div class="card mb-3 mt-2" style="max-width: 400px; margin-left: 20px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{ drivers['pokemonImage'] }}" class="img-fluid rounded-start" style="height: 150px; width: 150px;" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ drivers['name'] }}</h5>
+                        <div>
+                            <label class="col-form-label">Ability:</label>
+                            <label class="form-control-plaintext" style="display:inline;" >{{ drivers['ability'] }}</label>
+                        </div>
+                        <div>
+                            <label class="col-form-label">Base HP:</label>
+                            <label class="form-control-plaintext" style="display:inline;" >{{ drivers['hp'] }}</label>
+                        </div>
+                        <div>
+                            <label class="col-form-label">Attack:</label>
+                            <label class="form-control-plaintext" style="display:inline;" >{{ drivers['attack'] }}</label>
+                        </div>
+                        <div>
+                            <label class="col-form-label">Defense:</label>
+                            <label class="form-control-plaintext" style="display:inline;" >{{ drivers['defense'] }}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}
